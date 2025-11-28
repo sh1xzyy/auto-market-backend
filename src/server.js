@@ -11,22 +11,6 @@ export const setupServer = () => {
   app.use(cors());
   app.use(express.json());
 
-  app.get("/cars", async (req, res) => {
-    try {
-      const connection = getConnection();
-      const query = "SELECT * FROM car_brands";
-      const data = await connection.query(query);
-
-      res.status(200).json({
-        status: 200,
-        message: "Successfully get cars",
-        data,
-      });
-    } catch (error) {
-      console.log("error", error);
-    }
-  });
-
   app.use(notFoundHandler);
   app.use(errorHandler);
 
